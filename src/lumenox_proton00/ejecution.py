@@ -875,7 +875,7 @@ if __name__ == "__main__":
         "password_email": os.getenv("CFG_PASSWORD_EMAIL"),
         "recipient_email": os.getenv("CFG_RECIPIENT_EMAIL"),
 
-        "months_to_extract": 4,
+        "months_to_extract": 3,
         "motionless_days": 1
         }
     }
