@@ -861,7 +861,7 @@ class LumeProton00:
             self.send_email_notification(scenery=1)
 
         # In case of having successfully rescheduled
-        if self.reschedule_success:
+        if self.reschedule_success and self.user_problem != None:
             self.send_email_notification(scenery=2)
 
 
