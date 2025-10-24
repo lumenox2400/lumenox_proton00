@@ -510,8 +510,8 @@ class LumeProton00:
                             df_filtered_bios["month"] = pd.to_datetime(df_filtered_bios["month"], format="%B").dt.month
                             df_filtered_bios["date"] = pd.to_datetime(df_filtered_bios[["year", "month", "day"]])
 
-                            # Calculate date range (7 days before to the appointment)
-                            var_start_date = datetime.strptime(self.appointment_date_new, "%Y-%m-%d") - timedelta(days=7)
+                            # Calculate date range (4 days before to the appointment)
+                            var_start_date = datetime.strptime(self.appointment_date_new, "%Y-%m-%d") - timedelta(days=4)
                             var_end_date = datetime.strptime(self.appointment_date_new, "%Y-%m-%d")
 
                             print('Biometricos df disponibles')
@@ -526,7 +526,8 @@ class LumeProton00:
                                 self.final_msj = f"{self.final_msj} | No hay fechas disponibles para biometricos"
                                 return self.final_msj
                             else:
-                                filtered_bios_date = pd.to_datetime(df_filtered_bios.iloc[-1]["date"])
+                                df_filtered_bios = df_filtered_bios.sort_values(by=["date"],ascending=[False]).reset_index(drop=True)
+                                filtered_bios_date = pd.to_datetime(df_filtered_bios.iloc[0]["date"])
                                 self.final_msj = f"{self.final_msj} | Fecha biometricos disponible: {filtered_bios_date}"
                         else:
                             self.final_msj = f"{self.final_msj} | No hay fechas disponibles para biometricos"
