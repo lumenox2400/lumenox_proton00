@@ -351,6 +351,7 @@ class LumeProton00:
                 return self.final_msj
 
             df_filtered = df_filtered.sort_values(by=["year", "month", "day"]).reset_index(drop=True)
+            print('Entrevistas', df_filtered.head())
 
 
             # --- Iterate over available appointment dates ---
@@ -397,6 +398,7 @@ class LumeProton00:
                     if self.type_appointment in ['Visa (Entrevista + Biométricos)', 'Visa grupal (Entrevista + Biométricos)']:
                         # Extract available biometrics dates
                         df_bios = self._extract_biometric_dates(page)
+                        print('Biometricos', df_bios.head())
                         if df_bios.empty:
                             print("No biometrics dates available, trying next appointment date...")
                             continue
