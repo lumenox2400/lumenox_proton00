@@ -140,6 +140,8 @@ class LumeProton00:
         self.biometrics_date_new = None
         self.biometrics_hour_new = None
 
+        print('Months', self.months_to_extract)
+
         with sync_playwright() as p:
             # 00. Activate browser and create new page
             browser = p.chromium.launch(
