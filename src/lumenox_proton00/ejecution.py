@@ -347,6 +347,7 @@ class LumeProton00:
             df_dates_norm = pd.DataFrame(df_dates)
             df_filtered = df_dates_norm.loc[~df_dates_norm["is_disabled"]].copy()
 
+            print('Entrevistas habiles', df_filtered.head())
 
             if df_filtered.empty:
                 self.final_msj += " | No hay fechas disponibles para entrevista"
