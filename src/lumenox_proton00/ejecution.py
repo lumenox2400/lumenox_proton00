@@ -436,6 +436,7 @@ class LumeProton00:
 
                 except Exception as e:
                     print(f"Error trying appointment date {i}: {e}")
+                    self.final_msj += f" | No se logró completar combinación válida de cita + biométricos: {e}"
                     continue
 
             if not success:
