@@ -391,7 +391,7 @@ class LumeProton00:
                         print(f"No hours for {appointment_date}, trying next appointment date...")
                         continue
 
-                    self.appointment_hour_new = available_-times[0]
+                    self.appointment_hour_new = available_times[0]
                     page.select_option('#appointments_consulate_appointment_time', self.appointment_hour_new)
                     page.click("div.callout")
                     time.sleep(2)
@@ -417,7 +417,7 @@ class LumeProton00:
 
                         # Try top 2 biometric dates for this appointment
                         bios_success = False
-                        for j in range(min(2, len(df_bios))):
+                        for j in range(1, min(3, len(df_bios) + 1)):
                             bios_date = pd.to_datetime(df_bios.iloc[-j]["date"])
                             print(f"  → Trying biometrics date {bios_date}")
 
