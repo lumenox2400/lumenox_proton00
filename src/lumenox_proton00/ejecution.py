@@ -894,13 +894,28 @@ class LumeProton00:
                 page.wait_for_timeout(1000)
                 print(f"Intento {attempt+1} de mostrar biométricos...")
 
-                print(page.content()) 
-
                 # Force visibility and open the datepicker
                 page.evaluate("""
                 () => {
                     const el = document.querySelector('#appointments_asc_appointment_date');
                     if (!el) return;
+
+                    // Asegurar que el bloque contenedor esté visible
+                    const ascContainer = document.querySelector('#asc_date_time');
+                    if (ascContainer) {
+                        ascContainer.style.display = 'block';
+                        ascContainer.style.visibility = 'visible';
+                        ascContainer.style.opacity = '1';
+                        ascContainer.style.height = 'auto';
+                    }
+
+                    // Asegurar que el contenedor de error no bloquee la vista
+                    const notAvailable = document.querySelector('#asc_date_time_not_available');
+                    if (notAvailable) {
+                        notAvailable.style.display = 'none';
+                    }
+
+                    // Forzar visibilidad en toda la jerarquía del input
                     let p = el;
                     while (p) {
                         p.style.display = 'block';
@@ -909,17 +924,22 @@ class LumeProton00:
                         p.style.height = 'auto';
                         p = p.parentElement;
                     }
+
+                    // Hacer el input editable y disparar eventos
                     el.removeAttribute('readonly');
                     el.style.display = 'block';
                     el.style.visibility = 'visible';
                     el.dispatchEvent(new Event('focus', { bubbles: true }));
                     el.dispatchEvent(new Event('click', { bubbles: true }));
 
+                    // Mostrar el datepicker
                     if (window.jQuery && jQuery.fn.datepicker) {
                         try { jQuery(el).datepicker('show'); } catch (err) {}
                     }
                 }
                 """)
+
+                print(page.content()) 
 
                 # Wait for the input and possibly the datepicker popup
                 try:
