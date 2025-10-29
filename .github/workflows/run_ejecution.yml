@@ -57,7 +57,7 @@ jobs:
         while true
         do
           echo "→ Running scraper iteration at $(date '+%Y-%m-%d %H:%M:%S')"
-          PYTHONUNBUFFERED=1 xvfb-run -a python src/lumenox_proton01/ejecution.py || echo "Scraper failed, continuing..."
+          PYTHONUNBUFFERED=1 xvfb-run -a python src/lumenox_proton00/ejecution.py || echo "Scraper failed, continuing..."
 
           echo "Sleeping for 60 seconds..."
           for i in {1..60}; do
