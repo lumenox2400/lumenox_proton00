@@ -537,7 +537,15 @@ class LumeProton00:
                                 """, { "selector": "#appointments_asc_appointment_date", "value": bios_date_str })
 
                                 page.click("div.callout")
+                                page.click("div.callout")
+                                page.click("div.callout")
                                 page.wait_for_timeout(1500)
+                                calendar_button_bios.click()
+                                print(page.content())
+                                # Select the desired day (according to the library)
+                                page.click("a.ui-state-default.ui-state-active")
+                                print('\n')
+                                print(page.content())
 
                                 # Forzar campo de hora visible
                                 page.evaluate("""
